@@ -1,0 +1,143 @@
+# Quick Start
+
+Быстрый старт для нетерпеливых 😊
+
+## За 5 минут
+
+### 1. Клонируйте репозиторий
+
+```bash
+git clone https://gitea.yourdomain.com/yourname/1c-ai-development-kit.git
+cd 1c-ai-development-kit
+```
+
+### 2. Скопируйте в ваш проект
+
+```bash
+# Windows PowerShell
+Copy-Item .cursor\* -Destination "C:\path\to\your-1c-project\.cursor\" -Recurse -Force
+
+# Linux/macOS
+cp -r .cursor/* /path/to/your-1c-project/.cursor/
+```
+
+### 3. Перезапустите Cursor
+
+Ctrl+Shift+P → "Reload Window"
+
+### 4. Готово!
+
+Теперь в чате Cursor попробуйте:
+
+```
+Проверь код модуля CommonModule.ОбщегоНазначения
+```
+
+AI автоматически использует агента `onec-code-reviewer` для проверки.
+
+## Настройка MCP (опционально)
+
+### Бесплатные MCP-серверы
+
+#### BSL LSP Bridge (анализ кода)
+
+```bash
+# Установка
+git clone https://github.com/yourusername/bsl-lsp-bridge.git
+cd bsl-lsp-bridge
+npm install
+node server.js
+```
+
+Добавьте в `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "bsl-lsp-bridge": {
+      "command": "curl",
+      "args": [
+        "-X", "POST",
+        "http://localhost:5007/mcp",
+        "-H", "Content-Type: application/json",
+        "-d", "@-"
+      ]
+    }
+  }
+}
+```
+
+#### RLM Toolkit (память между чатами)
+
+```bash
+# Установка
+git clone https://github.com/yourusername/rlm-toolkit.git
+cd rlm-toolkit
+pip install -r requirements.txt
+python server.py
+```
+
+Добавьте в `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "rlm-toolkit": {
+      "command": "curl",
+      "args": [
+        "-X", "POST",
+        "http://localhost:8200/mcp",
+        "-H", "Content-Type: application/json",
+        "-d", "@-"
+      ]
+    }
+  }
+}
+```
+
+## Что попробовать?
+
+### Код-ревью
+
+```
+Проверь модуль src/cf/CommonModules/МойМодуль/Ext/Module.bsl
+```
+
+### Создание формы
+
+```
+Создай обработку "ЗагрузкаДанных" с формой для выбора файла
+```
+
+### Оптимизация запроса
+
+```
+Оптимизируй этот запрос:
+[вставьте код запроса]
+```
+
+### Генерация тестов
+
+```
+Создай тесты для функции РассчитатьСумму в модуле ОбщегоНазначения
+```
+
+## Следующие шаги
+
+- [Полное руководство по установке](docs/guides/installation.md)
+- [Работа с агентами](docs/guides/agents.md)
+- [Использование навыков](docs/guides/skills.md)
+- [Настройка проектных MCP](docs/guides/project-mcp-setup.md)
+- [FAQ](docs/FAQ.md)
+
+## Проблемы?
+
+- Агенты не работают? Перезапустите Cursor (Ctrl+Shift+P → "Reload Window")
+- MCP не отвечает? Проверьте, что сервер запущен: `curl http://localhost:PORT/health`
+- Другие проблемы? См. [Troubleshooting](docs/troubleshooting/README.md)
+
+## Помощь
+
+- 💬 Telegram: [ссылка будет добавлена]
+- 📧 Email: [будет добавлен]
+- 🐛 Issues: https://gitea.yourdomain.com/yourname/1c-ai-development-kit/issues
